@@ -1,0 +1,12 @@
+<h1>All Users</h1>
+
+<ul>
+  <% @users.each do |user| %>
+    <li>
+      <%= user.email %> 
+      - Roles: <%= user.roles.pluck(:name).join(", ") %>
+        <%= user.roles.pluck(:name) %>
+         <%= link_to "Edit Roles", edit_user_path(user) %>
+    </li>
+  <% end %>
+</ul>

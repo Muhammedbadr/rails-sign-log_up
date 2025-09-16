@@ -12,16 +12,17 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true  
   config.action_mailer.smtp_settings = {
-    address:         "smtp.gmail.com",
-    port:            587,
-    domain:          "example.com",
-    user_name: Rails.application.credentials.dig(:google_smtp, :email),
-    password:  Rails.application.credentials.dig(:google_smtp, :password),
+  address:              "smtp.gmail.com",
+  port:                 587,
+  domain:              'gmail.com',
+  user_name:            Rails.application.credentials.dig(:google_smtp, :email),
+  password:             Rails.application.credentials.dig(:google_smtp, :password),
+  authentication:       "plain",
+  enable_starttls_auto: true,
+  open_timeout:         5,
+  read_timeout:         5
+}
 
-    authentication:  "plain",
-    enable_starttls: true,
-    open_timeout:    5,
-    read_timeout:    5 }
 
 
 

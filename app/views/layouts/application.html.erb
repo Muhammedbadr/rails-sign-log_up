@@ -18,8 +18,24 @@
   </head>
 
   <body>
-    <%= yield %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <% flash.each do |name, msg| %>
+  <%= content_tag :div, msg, class: name %>
+<% end %>
+
+<% if user_signed_in? %>
+  Are you admin? <%= current_user.has_role?(:admin) %>
+  <%= current_user.roles.pluck(:name).join(", ") %>
+  
+  <%= link_to "Home", root_path, class: "#{ 'font-weight-bold' if current_page?(root_path) }" %> |
+  <%= link_to current_user.email, edit_user_registration_path, class: "#{ 'font-weight-bold' if current_page?(edit_user_registration_path) }" %> |
+  <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+<% else %>
+  <%= link_to "Sign In", new_user_session_path, class: "#{ 'font-weight-bold' if current_page?(new_user_session_path) }" %>
+<% end %>
+
+<hr>
+
+<%= yield %>
+
   </body>
 </html>

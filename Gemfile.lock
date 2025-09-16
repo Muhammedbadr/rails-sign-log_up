@@ -241,6 +241,7 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     rexml (3.4.2)
+    rolify (6.0.1)
     rubocop (1.80.2)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
@@ -339,6 +340,7 @@ DEPENDENCIES
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.2.2, >= 7.2.2.2)
+  rolify
   rubocop-rails-omakase
   selenium-webdriver
   sprockets-rails
