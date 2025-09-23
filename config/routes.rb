@@ -4,7 +4,7 @@ Rails.application.routes.draw do
       get :confirm_email
     end 
   end 
-resources :users
+resources :users, only: [:index, :edit, :update, :destroy]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root "home#index"

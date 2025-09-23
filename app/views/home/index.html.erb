@@ -1,15 +1,27 @@
-<div>
-    <h1>Welcome to the Home Page</h1>
-    <% if user_signed_in? %>
-  <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "" %>
-<% else %>
-  <%= button_to "Sign in", new_user_session_path, class: "" %>
-<% end %>
-   
+<div class="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-6">
+  <h1 class="text-4xl md:text-5xl font-extrabold text-blue-600 mb-6 text-center">
+    Welcome to the Home Page
+  </h1>
+
+  <% if user_signed_in? %>
+    <div class="mb-4 text-gray-700 text-lg">
+      Roles: <span class="font-semibold text-blue-500"><%= current_user.roles.pluck(:name).join(", ") %></span>
+    </div>
+
+    <nav class="flex flex-col md:flex-row gap-3 md:gap-6 text-center">
+      <%= link_to "Home", root_path, 
+          class: "px-4 py-2 rounded-lg transition-colors duration-200 #{ current_page?(root_path) ? 'bg-blue-600 text-white font-bold' : 'bg-white text-blue-600 hover:bg-blue-100' }" %>
+
+      <%= link_to current_user.email, edit_user_registration_path, 
+          class: "px-4 py-2 rounded-lg transition-colors duration-200 #{ current_page?(edit_user_registration_path) ? 'bg-blue-600 text-white font-bold' : 'bg-white text-blue-600 hover:bg-blue-100' }" %>
+
+      <%= link_to "Log out", destroy_user_session_path, 
+    data: { turbo_method: :delete }, 
+    class: "px-4 py-2 rounded-lg bg-red-500 text-white hover:bg-red-600 transition-colors duration-200" %>
+
+    </nav>
+  <% else %>
+    <%= link_to "Sign In", new_user_session_path, 
+        class: "px-6 py-3 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-colors duration-200" %>
+  <% end %>
 </div>
-
-
-
-
-
-
